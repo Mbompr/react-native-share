@@ -50,9 +50,9 @@ public class RNShareModule extends ReactContextBaseJavaModule {
       intent.putExtra(Intent.EXTRA_SUBJECT, options.getString("share_text"));
     }
 
-    if (hasValidKey("share_URL", options)) {
-      intent.putExtra(Intent.EXTRA_TEXT, options.getString("share_URL"));
-    }
+    if (hasValidKey("share_text", options)) { 
+      intent.putExtra(Intent.EXTRA_TEXT, options.getString("share_text")); 
+    } 
 
     return intent;
   }
