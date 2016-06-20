@@ -17,11 +17,7 @@ RCT_EXPORT_METHOD(open:(NSDictionary *)options :(RCTResponseSenderBlock)callback
 {
     // Your implementation here
     NSString *shareText = [RCTConvert NSString:options[@"share_text"]];
-    NSString *shareUrl = [RCTConvert NSString:options[@"share_URL"]];
-    //some app extension need a NSURL or UIImage Object to share
-    NSURL *cardUrl = [NSURL URLWithString:shareUrl];
-
-    NSArray *itemsToShare = @[shareText, shareUrl,cardUrl];
+    NSArray *itemsToShare = @[shareText];
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
     /*activityVC.excludedActivityTypes = @[UIActivityTypePostToWeibo,
                                          UIActivityTypeMessage,
@@ -36,7 +32,7 @@ RCT_EXPORT_METHOD(open:(NSDictionary *)options :(RCTResponseSenderBlock)callback
                                          UIActivityTypePostToTencentWeibo,
                                          UIActivityTypeAirDrop];*/
     UIViewController *root = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
-    
+
     //if iPhone
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         [root presentViewController:activityVC animated:YES completion:nil];
